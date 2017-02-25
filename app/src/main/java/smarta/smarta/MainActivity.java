@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> redLineStops = new ArrayList<>();
     private ArrayList<String> goldLineStops = new ArrayList<>();
     private ArrayList<String> blueLineStops = new ArrayList<>();
+    private List<String> currentLine;
 
     private ArrayAdapter<String> arrAdapter;
 
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 goldLineStops);
         arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrAdapter);
+        currentLine = goldLineStops;
 
     }
 
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(arrAdapter);
             lineNum = 1;
+            currentLine = goldLineStops;
 
             int colorFrom = colorSource;
             int colorTo = Color.parseColor("#FFC107");
@@ -145,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
             spinner.setAdapter(arrAdapter);
             llmain.setBackgroundColor(Color.parseColor("#0277BD"));
             lineNum = 2;
+            currentLine = blueLineStops;
         }
     }
 
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             spinner.setAdapter(arrAdapter);
             llmain.setBackgroundColor(Color.parseColor("#D32F2F"));
             lineNum = 0;
+            currentLine = redLineStops;
         }
     }
 

@@ -131,8 +131,10 @@ public class MainActivity extends AppCompatActivity {
                                     }
 
                                     numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
+                                    if (numStopsLeft == 0){
+
+                                    }
                                     numStopsTextView.setText(String.valueOf(numStopsLeft));
-                                    Log.d("numStopsLeft", Integer.toString(numStopsLeft));
                                 }
                             }
 

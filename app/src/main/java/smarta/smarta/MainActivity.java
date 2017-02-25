@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private BeaconManager beaconManager;
     private Region region;
+    private ArrayList<String> redLineStops = new ArrayList<>();
+    private ArrayList<String> goldLineStops = new ArrayList<>();
+    private ArrayList<String> blueLineStops = new ArrayList<>();
 
     TextView stationTextView;
 
@@ -39,6 +42,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
+
+        redLineStops.add("Airport");
+        redLineStops.add("College Park");
+        redLineStops.add("East Point");
+        redLineStops.add("LakeWood/Ft.McPherson");
+        redLineStops.add("Oakland City");
+        redLineStops.add("West End");
+        redLineStops.add("Garnett");
+        redLineStops.add("Five Points");
+        redLineStops.add("Peachtree Center");
+        redLineStops.add("Civic Center");
+        redLineStops.add("North Avenue");
+        redLineStops.add("Midtown");
+        redLineStops.add("Arts Center");
+        redLineStops.add("Buckhead");
+        redLineStops.add("Medical Center");
+        redLineStops.add("Dunwoody");
+        redLineStops.add("Sandy Springs");
+        redLineStops.add("North Springs");
+
 
         stationTextView = (TextView) findViewById(R.id.stationTextView);
 

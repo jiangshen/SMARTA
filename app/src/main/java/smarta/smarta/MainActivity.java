@@ -1,7 +1,13 @@
 package smarta.smarta;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.estimote.sdk.Beacon;
@@ -18,11 +24,24 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CardView cardGold;
+    private CardView cardBlue;
+    private CardView cardRed;
+
+    private LinearLayout llmain;
+
+    private Spinner spinner;
+
+    // Red = 0, Gold = 1, Blue = 2
+    private int lineNum = 1;
+
     private BeaconManager beaconManager;
     private Region region;
     private ArrayList<String> redLineStops = new ArrayList<>();
     private ArrayList<String> goldLineStops = new ArrayList<>();
     private ArrayList<String> blueLineStops = new ArrayList<>();
+
+    private ArrayAdapter<String> arrAdapter;
 
     TextView stationTextView;
 
@@ -43,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        llmain = (LinearLayout) findViewById(R.id.activity_main);
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
@@ -68,8 +89,60 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        cardGold = (CardView) findViewById(R.id.card_gold);
+        cardBlue = (CardView) findViewById(R.id.card_blue);
+        cardRed = (CardView) findViewById(R.id.card_red);
+
+        spinner = (Spinner) findViewById(R.id.spinning);
+        arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                goldLineStops);
+        arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrAdapter);
+
     }
 
+    public void card_gold_clicked(View view) {
+        if (lineNum != 1) {
+//            cardGold.setBackgroundColor(Color.parseColor("#455A64"));
+//            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
+//            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
+            llmain.setBackgroundColor(Color.parseColor("#FFC107"));
+            arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                    goldLineStops);
+            arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(arrAdapter);
+            lineNum = 1;
+        }
+    }
+
+    public void card_blue_clicked(View view) {
+        if (lineNum != 2) {
+//            cardBlue.setBackgroundColor(Color.parseColor("#455A64"));
+//            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
+//            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
+            arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                    blueLineStops);
+            arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(arrAdapter);
+            llmain.setBackgroundColor(Color.parseColor("#0277BD"));
+            lineNum = 2;
+        }
+    }
+
+    public void card_red_clicked(View view) {
+        if (lineNum != 0) {
+//            cardRed.setBackgroundColor(Color.parseColor("#455A64"));
+//            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
+//            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
+            arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                    redLineStops);
+            arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(arrAdapter);
+            llmain.setBackgroundColor(Color.parseColor("#D32F2F"));
+            lineNum = 0;
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -163,4 +236,5 @@ public class MainActivity extends AppCompatActivity {
         blueLineStops.add("Kensington");
         blueLineStops.add("Indian Creek");
     }
+
 }

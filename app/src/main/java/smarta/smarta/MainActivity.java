@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         String beaconKey = Integer.toString(station.getMajor()) + ":" + Integer.toString(station.getMinor());
                         if (beaconIdToBusIdHashMap.containsKey(beaconKey)){
                             currentStation = beaconIdToBusIdHashMap.get(beaconKey);
-                            if(!lastStation.equals(currentStation)){
+                            if(!currentStation.equals(lastStation)){
                                 numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(currentStation));
                             }
                             lastStation = currentStation;

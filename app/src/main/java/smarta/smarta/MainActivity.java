@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                                     if (numStopsLeft == 0){
                                         Log.d("NOTIFY", "HEY REACHED!!!!!!!!");
                                         displayNotificationAndVibrate("You have reached your destination!");
+                                        speak("You have reached " + destinationStation);
                                     }
                                     numStopsTextView.setText(String.valueOf(numStopsLeft));
                                 }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1081392820467",
+    "firebase_url": "https://marta-buddy.firebaseio.com",
+    "project_id": "marta-buddy",
+    "storage_bucket": "marta-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081392820467:android:283f74ddd7092cfe",
+        "android_client_info": {
+          "package_name": "smarta.smarta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081392820467-8vpe1thr7ni008j8te8l1gs81rdit8s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhPQFnX0Az5ua4_YP_-Z91ZFB_3iEh6A0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

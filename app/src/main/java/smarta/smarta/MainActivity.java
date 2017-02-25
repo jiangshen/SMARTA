@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -27,8 +28,11 @@ import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.SystemRequirementsChecker;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +41,7 @@ import java.util.Map;
 import java.util.UUID;
 
 
-public class MainActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class MainActivity extends AppCompatActivity implements TextToSpeech.OnInitListener, NetworkStateReceiver.NetworkStateReceiverListener {
 
     private final int animDuration = 500;
     private final int redColor = Color.parseColor("#D32F2F");
@@ -75,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private List<String> currentLine;
     private String currentStation;
 
-
     private String destinationStation;
 
     private ArrayAdapter<String> arrAdapter;
@@ -92,6 +95,18 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     TextToSpeech tts;
 
+    private DatabaseReference databaseReference;
+    private Calendar calendar;
+    private String todayDate;
+    private String routeType;
+
+    private NetworkStateReceiver networkStateReceiver;
+
+    private HashMap<String, Integer> routeToRiderNumberHashMap;
+    private HashMap<String, HashMap> dateToRouteToRiderNumberHashMap;
+
+    boolean hasReached = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
+        beaconIdToTrainIdHashMap.put("19272:35026", "Train A");
         beaconIdToTrainIdHashMap.put("19272:35107","Train B");
-        beaconIdToTrainIdHashMap.put("19272:35026", "Train A"); //stop 4
 
         beaconIdToStationIdHashMap.put("19272:3", "Airport"); //stop 1
         beaconIdToStationIdHashMap.put("19272:21858", "College Park"); //stop 2
@@ -133,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
                     if(list.size() > 1) {
                         Beacon currentStationBeacon = list.get(1);
+
                         String currentStationBeaconKey = Integer.toString(currentStationBeacon.getMajor()) + ":" + Integer.toString(currentStationBeacon.getMinor());
                         if (beaconIdToStationIdHashMap.containsKey(currentStationBeaconKey)) {
 
@@ -148,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
                                     numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
                                     if (numStopsLeft == 0){
+                                        hasReached = true;
+                                        networkAvailable();
                                         Log.d("NOTIFY", "HEY REACHED!!!!!!!!");
                                         displayNotificationAndVibrate("You have reached your destination!");
                                         speak("You have reached " + destinationStation);
@@ -226,6 +244,23 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         currentStation = "Airport";
         destinationStation = currentLine.get(0);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        routeType = "Red";
+
+        calendar = Calendar.getInstance();
+        todayDate = Integer.valueOf(calendar.get(Calendar.MONTH)) + 1 + "-"
+                + calendar.get(Calendar.DAY_OF_MONTH)
+                + "-" + calendar.get(Calendar.YEAR);
+
+        routeToRiderNumberHashMap = createAndReturnRouteToRiderNumberHashMap();
+        dateToRouteToRiderNumberHashMap = new HashMap<>();
+
+        dateToRouteToRiderNumberHashMap.put(todayDate, routeToRiderNumberHashMap);
+
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     public void card_gold_clicked(View view) {
@@ -459,5 +494,48 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void transition(View view) {
         Intent intent = new Intent(this, TripHistory.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void networkAvailable() {
+        if (hasReached) {
+            dateToRouteToRiderNumberHashMap.put(todayDate, routeToRiderNumberHashMap);
+
+            if (lineNum == 0) {
+                // red
+                int riderNumber = routeToRiderNumberHashMap.get("Red");
+                riderNumber++;
+                routeToRiderNumberHashMap.put(routeType, riderNumber);
+            } else if (lineNum == 1) {
+                // gold
+                int riderNumber = routeToRiderNumberHashMap.get("Gold");
+                riderNumber++;
+                routeToRiderNumberHashMap.put(routeType, riderNumber);
+            } else if (lineNum == 2){
+                // blue
+                int riderNumber = routeToRiderNumberHashMap.get("Blue");
+                riderNumber++;
+                routeToRiderNumberHashMap.put(routeType, riderNumber);
+            }
+            dateToRouteToRiderNumberHashMap.put(todayDate, routeToRiderNumberHashMap);
+
+            databaseReference.child("marta-buddy").setValue(dateToRouteToRiderNumberHashMap);
+
+            hasReached = false;
+        }
+    }
+
+    @Override
+    public void networkUnavailable() {
+    }
+
+    public HashMap<String, Integer> createAndReturnRouteToRiderNumberHashMap() {
+        HashMap<String, Integer> tempHashMap = new HashMap<>();
+
+        tempHashMap.put("Red", 0);
+        tempHashMap.put("Gold", 0);
+        tempHashMap.put("Blue", 0);
+
+        return tempHashMap;
     }
 }

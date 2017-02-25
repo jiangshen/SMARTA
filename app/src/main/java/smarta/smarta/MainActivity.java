@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             if (currentStation != null) {
                                 if (!newStation.equals(currentStation)){
 
-                                    if (beaconIdToStationIdHashMap.containsKey(nearestBeaconKey)) {
+                                    if (beaconIdToTrainIdHashMap.containsKey(nearestBeaconKey)) {
                                         currTrainTV.setText(beaconIdToTrainIdHashMap.get
                                                 (nearestBeaconKey));
                                     }

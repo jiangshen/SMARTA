@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -233,10 +234,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
         int colorSource = (lineNum == 0) ? redColor : (lineNum == 2) ? blueColor : 0;
         if (lineNum != 1) {
-//            cardGold.setBackgroundColor(Color.parseColor("#455A64"));
-//            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
-//            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
-//            llmain.setBackgroundColor(Color.parseColor("#FFC107"));
 
             llGoldBar.setVisibility(View.VISIBLE);
             if (lineNum == 0){
@@ -271,9 +268,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void card_blue_clicked(View view) {
         int colorSource = (lineNum == 0) ? redColor : (lineNum == 1) ? goldColor : 0;
         if (lineNum != 2) {
-//            cardBlue.setBackgroundColor(Color.parseColor("#455A64"));
-//            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
-//            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
 
             llBlueBar.setVisibility(View.VISIBLE);
             if (lineNum == 0){
@@ -314,9 +308,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void card_red_clicked(View view) {
         int colorSource = (lineNum == 2) ? blueColor : (lineNum == 1) ? goldColor : 0;
         if (lineNum != 0) {
-//            cardRed.setBackgroundColor(Color.parseColor("#455A64"));
-//            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
-//            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
 
             llRedBar.setVisibility(View.VISIBLE);
             if (lineNum == 1){
@@ -329,7 +320,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     redLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(arrAdapter);
-//            llmain.setBackgroundColor(Color.parseColor("#D32F2F"));
             lineNum = 0;
             currentLine = redLineStops;
 
@@ -466,5 +456,11 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     public void speak(String s) {
         tts.speak(s, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+    public void transition(View view) {
+        Intent intent = new Intent(this, TripHistory.class);
+        intent.putExtra("data", trips);
+        startActivity(intent);
     }
 }

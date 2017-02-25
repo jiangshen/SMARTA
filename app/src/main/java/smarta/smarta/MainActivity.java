@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private String destinationStation;
 
     private ArrayAdapter<String> arrAdapter;
+    private ArrayAdapter<String> arrayAdapter;
 
     TextView stationTextView;
 
@@ -114,10 +115,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                             lastStation = currentStation;
                         }
-
-                        //check if 2nd closest stop changes and then update stops left
-                        //numStopsLeft = Math.abs(currentLine.indexOf(beaconIdToBusIdHashMap.get(nearestBeacon.getProximityUUID()))
-                        //      - currentLine.indexOf(currentStop));
                     }
                     String currentStop = currentStopFinder(nearestBeacon);
 
@@ -138,11 +135,11 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(arrAdapter);
         currentLine = goldLineStops;
 
+        //Detect change in destination station
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 destinationStation = spinner.getSelectedItem().toString();
-                Log.d("destinationStation",destinationStation);
             }
 
             @Override
@@ -151,7 +148,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ArrayList<String> stopCount = new ArrayList<>();
+        for(int i = 0; i < 5;i++){
+            stopCount.add(Integer.toString(i));
+        }
         numStops = (Spinner) findViewById(R.id.num_stops);
+        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,stopCount);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numStops.setAdapter(arrayAdapter);
 
         numStopsLeft = 10;
         lastStation = null;

@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         llmain = (LinearLayout) findViewById(R.id.activity_main);
+        llBlueBar = (LinearLayout) findViewById(R.id.ll_blue_bar);
+        llRedBar = (LinearLayout) findViewById(R.id.ll_red_bar);
+        llGoldBar = (LinearLayout) findViewById(R.id.ll_gold_bar);
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 

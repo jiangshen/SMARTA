@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     TextView currentStationTextView;
     TextView numStopsTextView;
 
+    TextView currTrainTV;
+
     private Map<String, String> beaconIdToTrainIdHashMap = new HashMap<>();
     private Map<String, String> beaconIdToStationIdHashMap = new HashMap<>();
 
@@ -110,7 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 if (!list.isEmpty()) {
                     Beacon nearestBeacon = list.get(0);
 
-                    if(list.size() > 1){
+                    String nearestBeaconKey = String.format("%d:%d", nearestBeacon.getMajor(),
+                            nearestBeacon.getMinor());
+
+                    if(list.size() > 1) {
                         Beacon currentStationBeacon = list.get(1);
                         String currentStationBeaconKey = Integer.toString(currentStationBeacon.getMajor()) + ":" + Integer.toString(currentStationBeacon.getMinor());
                         if (beaconIdToStationIdHashMap.containsKey(currentStationBeaconKey)) {
@@ -119,8 +124,13 @@ public class MainActivity extends AppCompatActivity {
 
                             if (currentStation != null) {
                                 if (!newStation.equals(currentStation)){
-                                    numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
 
+                                    if (beaconIdToStationIdHashMap.containsKey(nearestBeaconKey)) {
+                                        currTrainTV.setText(beaconIdToTrainIdHashMap.get
+                                                (nearestBeaconKey));
+                                    }
+
+                                    numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
                                     numStopsTextView.setText(String.valueOf(numStopsLeft));
                                     Log.d("numStopsLeft", Integer.toString(numStopsLeft));
                                 }
@@ -158,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        currTrainTV = (TextView) findViewById(R.id.curr_train_tv);
 
         ArrayList<String> stopCount = new ArrayList<>();
         for(int i = 0; i < 5;i++){

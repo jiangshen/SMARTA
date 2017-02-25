@@ -249,6 +249,13 @@
         android:id="@+id/numStopsTextViewXML"
         android:gravity="center_vertical|center_horizontal"/>
 
+    <TextView
+        android:text="Last Train:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/curr_train_tv"
+        android:gravity="center_vertical|center_horizontal"/>
+
     <!--<android.support.design.widget.FloatingActionButton-->
         <!--android:id="@+id/fab_img"-->
         <!--android:layout_width="wrap_content"-->

@@ -173,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_red_clicked(View view) {
+        int colorSource = (lineNum == 2) ? Color.parseColor("#0277BD") : (lineNum == 1) ? Color
+                .parseColor("#FFC107") : 0;
         if (lineNum != 0) {
 //            cardRed.setBackgroundColor(Color.parseColor("#455A64"));
 //            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
@@ -181,9 +183,23 @@ public class MainActivity extends AppCompatActivity {
                     redLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(arrAdapter);
-            llmain.setBackgroundColor(Color.parseColor("#D32F2F"));
+//            llmain.setBackgroundColor(Color.parseColor("#D32F2F"));
             lineNum = 0;
             currentLine = redLineStops;
+
+            int colorFrom = colorSource;
+            int colorTo = Color.parseColor("#D32F2F");
+            ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+            colorAnimation.setDuration(250); // milliseconds
+            colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+                @Override
+                public void onAnimationUpdate(ValueAnimator animator) {
+                    llmain.setBackgroundColor((int) animator.getAnimatedValue());
+                }
+
+            });
+            colorAnimation.start();
         }
     }
 

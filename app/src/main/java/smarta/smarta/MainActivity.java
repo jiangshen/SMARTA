@@ -2,6 +2,7 @@ package smarta.smarta;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

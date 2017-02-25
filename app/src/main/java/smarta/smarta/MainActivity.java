@@ -8,7 +8,6 @@ import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.SystemRequirementsChecker;
-import com.estimote.sdk.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,19 +22,15 @@ public class MainActivity extends AppCompatActivity {
     private Region region;
 
     TextView stationTextView;
-    final String[] accuracy = {""};
 
-    private static Map<String, List<String>> PLACES_BY_BEACONS = null;
+    private static Map<String, String> STOPS_BY_BEACONS = null;
 
     static {
-        Map<String, List<String>> placesByBeacons = new HashMap<>();
-        placesByBeacons.put("19272:3", new ArrayList<String>() {{ // RN3
-            add("Stop 1");
-        }});
-        placesByBeacons.put("19272:21858", new ArrayList<String>() {{ // RN1
-            add("Stop 2");
-        }});
-        PLACES_BY_BEACONS = Collections.unmodifiableMap(placesByBeacons);
+        Map<String, String> beaconIdToCurrentStopHashMap = new HashMap<>();
+        beaconIdToCurrentStopHashMap.put("19272:3", "Stop 1");
+        beaconIdToCurrentStopHashMap.put("19272:21858", "Stop 2");
+
+        STOPS_BY_BEACONS = Collections.unmodifiableMap(beaconIdToCurrentStopHashMap);
     }
 
     @Override
@@ -90,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentStopFinder(Beacon beacon) {
         String beaconKey = String.format("%d:%d", beacon.getMajor(), beacon.getMinor());
 
-        String currentStop = "Color not found in database.";
+        String currentStop = "Searching for current stop...";
 
         switch (beaconKey) {
             case "19272:3": return "Stop 1";

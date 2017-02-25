@@ -11,12 +11,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="smarta.smarta.MainActivity">
 
+
     <TextView
-        android:text="Searching for stop..."
+        android:text="Searching for current stop..."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:id="@+id/stationTextView"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="156dp"
+        android:id="@+id/stationTextView" />
 </RelativeLayout>

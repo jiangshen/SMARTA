@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +24,6 @@ import com.estimote.sdk.Region;
 import com.estimote.sdk.SystemRequirementsChecker;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                                     numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
                                     if (numStopsLeft == 0){
                                         Log.d("NOTIFY", "HEY REACHED!!!!!!!!");
-                                        displayNotification("You have reached your destination!");
+                                        displayNotificationAndVibrate("You have reached your destination!");
                                     }
                                     numStopsTextView.setText(String.valueOf(numStopsLeft));
                                 }
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         return currentStop;
     }
 
-    private void displayNotification(String s) {
+    private void displayNotificationAndVibrate(String s) {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_travel)
@@ -367,6 +367,9 @@ public class MainActivity extends AppCompatActivity {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         int mId = 0;
         mNotificationManager.notify(mId, mBuilder.build());
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(1000);
     }
 
     /*

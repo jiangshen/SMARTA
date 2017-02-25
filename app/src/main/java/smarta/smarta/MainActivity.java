@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     //keep track of number of stops left until destination
     private int numStopsLeft;
 
+    private int numStopsNotify;
+
     private BeaconManager beaconManager;
     private Region region;
     private ArrayList<String> redLineStops = new ArrayList<>();
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         if (beaconIdToBusIdHashMap.containsKey(beaconKey)){
                             currentStation = beaconIdToBusIdHashMap.get(beaconKey);
                             if(!currentStation.equals(lastStation)){
-                                numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(currentStation));
+                                numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(currentStation)) - numStopsNotify;
                             }
                             lastStation = currentStation;
                         }
@@ -157,7 +159,21 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numStops.setAdapter(arrayAdapter);
 
+        numStops.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                numStopsNotify = Integer.parseInt(numStops.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         numStopsLeft = 10;
+        //initialize numStopsNotify???
+        numStopsNotify = 0;
         lastStation = null;
         destinationStation = currentLine.get(0);
 

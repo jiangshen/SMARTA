@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private CardView cardGold;
     private CardView cardBlue;
     private CardView cardRed;
+    private LinearLayout llBlueBar;
+    private LinearLayout llRedBar;
+    private LinearLayout llGoldBar;
 
     private LinearLayout llmain;
 

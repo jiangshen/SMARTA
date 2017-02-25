@@ -73,7 +73,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:background="#8D6E63">
+                    android:background="#8D6E63"
+                    android:id="@+id/ll_red_bar"
+                    android:orientation="vertical">
                 </LinearLayout>
 
             </LinearLayout>
@@ -111,7 +113,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:background="#8D6E63">
+                    android:background="#8D6E63"
+                    android:id="@+id/ll_gold_bar"
+                    android:orientation="vertical">
                 </LinearLayout>
 
             </LinearLayout>
@@ -152,7 +156,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:background="#8D6E63">
+                    android:background="#8D6E63"
+                    android:id="@+id/ll_blue_bar"
+                    android:orientation="vertical">
                 </LinearLayout>
 
             </LinearLayout>

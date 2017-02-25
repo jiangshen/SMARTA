@@ -35,6 +35,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
+
 public class MainActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private final int animDuration = 500;
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         llmain = (LinearLayout) findViewById(R.id.activity_main);
         llBlueBar = (LinearLayout) findViewById(R.id.ll_blue_bar);
@@ -176,9 +175,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         Trip t = new Trip(12345,"Airport","East Point");
         t.setTripStartTime();
         t.setTripEndTime();
-        trips = new ArrayList<>();
-        trips.add(t);
-
+        TripManager.getInstance().addTrip(t);
 
         spinner = (Spinner) findViewById(R.id.spinning);
         arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
@@ -460,7 +457,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     public void transition(View view) {
         Intent intent = new Intent(this, TripHistory.class);
-        intent.putExtra("data", trips);
         startActivity(intent);
     }
 }

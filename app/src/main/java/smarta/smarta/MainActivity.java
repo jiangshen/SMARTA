@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView stationTextView;
 
+    private HashMap<String, String> beaconIdToBusIdHashMap = new HashMap<>();
     private static Map<String, String> STOPS_BY_BEACONS = null;
 
     static {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
+        beaconIdToBusIdHashMap.put("19272:35107","52A32");
         //Adding stop strings to appropriate lists
         populateStops();
 

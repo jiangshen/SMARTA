@@ -118,8 +118,6 @@
         android:background="@android:drawable/btn_dropdown"
         android:dropDownSelector="#fff">
 
-
-
     </android.support.v7.widget.AppCompatSpinner>
 
     <TextView

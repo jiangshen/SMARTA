@@ -1,5 +1,7 @@
 package smarta.smarta;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView stationTextView;
 
-    private HashMap<String, String> beaconIdToBusIdHashMap = new HashMap<>();
+        private HashMap<String, String> beaconIdToBusIdHashMap = new HashMap<>();
     private static Map<String, String> STOPS_BY_BEACONS = null;
 
     static {
@@ -103,16 +105,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_gold_clicked(View view) {
+        int colorSource = (lineNum == 0) ? Color.parseColor("#D32F2F") : (lineNum == 2) ? Color
+                .parseColor("#0277BD") : 0;
         if (lineNum != 1) {
 //            cardGold.setBackgroundColor(Color.parseColor("#455A64"));
 //            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
 //            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
-            llmain.setBackgroundColor(Color.parseColor("#FFC107"));
+//            llmain.setBackgroundColor(Color.parseColor("#FFC107"));
             arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                     goldLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(arrAdapter);
             lineNum = 1;
+
+            int colorFrom = colorSource;
+            int colorTo = Color.parseColor("#FFC107");
+            ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+            colorAnimation.setDuration(250); // milliseconds
+            colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+                @Override
+                public void onAnimationUpdate(ValueAnimator animator) {
+                    llmain.setBackgroundColor((int) animator.getAnimatedValue());
+                }
+
+            });
+            colorAnimation.start();
         }
     }
 

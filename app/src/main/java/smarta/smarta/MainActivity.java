@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         Map<String, String> beaconIdToCurrentStopHashMap = new HashMap<>();
-        beaconIdToCurrentStopHashMap.put("19272:3", "Stop 1");
-        beaconIdToCurrentStopHashMap.put("19272:21858", "Stop 2");
+        beaconIdToCurrentStopHashMap.put("19272:3", "Stop 1"); //stop 1
+        beaconIdToCurrentStopHashMap.put("19272:21858", "Stop 2"); //stop 2
+        beaconIdToCurrentStopHashMap.put("19272:61798", "Stop 3"); //stop 3
+        beaconIdToCurrentStopHashMap.put("19272:35026", "Stop 4"); //stop 4
 
         STOPS_BY_BEACONS = Collections.unmodifiableMap(beaconIdToCurrentStopHashMap);
     }

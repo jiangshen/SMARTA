@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -13,270 +13,323 @@
     tools:context="smarta.smarta.MainActivity"
     android:background="#FFC107">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:text="Current Station"
-        android:id="@+id/tv_currStop"/>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="240dp"
-        android:minHeight="48dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#263238">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:text="Current Station"
+            android:id="@+id/tv_currStop"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="240dp"
+            android:minHeight="48dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:id="@+id/curr_stn"
-            android:textSize="26dp"/>
+            android:backgroundTint="#263238">
 
-    </android.support.v7.widget.CardView>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:text="Select Line"
-        android:id="@+id/tv_selectRoute"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <android.support.v7.widget.CardView
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="#ffffff"
-            android:id="@+id/card_red"
-            android:clickable="true"
-            android:onClick="card_red_clicked">
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:gravity="center_horizontal"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="6dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#D32F2F"
-                    android:text="Red"
-                    />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:background="#8D6E63"
-                    android:id="@+id/ll_red_bar"
-                    android:orientation="vertical"
-                    android:visibility="invisible">
-                </LinearLayout>
-
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:text="Station #"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:id="@+id/curr_stn"
+                android:textSize="26dp"/>
 
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="wrap_content"
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:clickable="true"
-            android:id="@+id/card_gold"
-            android:onClick="card_gold_clicked">
+            android:layout_margin="12dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:text="Select Line"
+            android:id="@+id/tv_selectRoute"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <android.support.v7.widget.CardView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:gravity="center_horizontal"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="6dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#FFC107"
-                    android:text="Gold"
-                    />
+                android:layout_margin="4dp"
+                android:backgroundTint="#ffffff"
+                android:id="@+id/card_red"
+                android:clickable="true"
+                android:onClick="card_red_clicked">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:background="#8D6E63"
-                    android:id="@+id/ll_gold_bar"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="6dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#D32F2F"
+                        android:text="Red"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="#8D6E63"
+                        android:id="@+id/ll_red_bar"
+                        android:orientation="vertical"
+                        android:visibility="invisible">
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="#ffffff"
-            android:clickable="true"
-            android:id="@+id/card_blue"
-            android:onClick="card_blue_clicked">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <android.support.v7.widget.CardView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:gravity="center_horizontal"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="6dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#1976D2"
-                    android:text="Blue"
-                    />
+                android:layout_margin="4dp"
+                android:clickable="true"
+                android:id="@+id/card_gold"
+                android:onClick="card_gold_clicked">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:background="#8D6E63"
-                    android:id="@+id/ll_blue_bar"
-                    android:orientation="vertical"
-                    android:visibility="invisible">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="6dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFC107"
+                        android:text="Gold"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="#8D6E63"
+                        android:id="@+id/ll_gold_bar"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="#ffffff"
+                android:clickable="true"
+                android:id="@+id/card_blue"
+                android:onClick="card_blue_clicked">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="6dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#1976D2"
+                        android:text="Blue"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="#8D6E63"
+                        android:id="@+id/ll_blue_bar"
+                        android:orientation="vertical"
+                        android:visibility="invisible">
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:text="Choose Destination"
+            android:id="@+id/tv_selStation"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:id="@+id/spinning"
+                android:layout_marginEnd="-4dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:dropDownSelector="#fff">
+
+            </android.support.v7.widget.AppCompatSpinner>
 
         </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:text="Notify me in"
+            android:id="@+id/tv_notify"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:id="@+id/num_stops"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="-4dp"
+                android:dropDownSelector="#fff"
+                android:layout_gravity="center">
+
+            </android.support.v7.widget.AppCompatSpinner>
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <TextView
+            android:text="Searching for current stop..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:id="@+id/stationTextView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="18dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:text="Number of Stops left:"/>
+
+            <TextView
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp"
+                android:id="@+id/numStopsTextViewXML"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:text="Train Name:"/>
+
+            <TextView
+                android:text="*"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp"
+                android:id="@+id/curr_train_tv"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:text="Choose Destination"
-        android:id="@+id/tv_selStation"/>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp">
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/spinning"
-            android:layout_marginEnd="-4dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:dropDownSelector="#fff">
-
-        </android.support.v7.widget.AppCompatSpinner>
-
-    </android.support.v7.widget.CardView>
-
-    <TextView
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_width="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:text="Notify me in"
-        android:id="@+id/tv_notify"/>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp">
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/num_stops"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="-4dp"
-            android:dropDownSelector="#fff"
-            android:layout_gravity="center">
-
-        </android.support.v7.widget.AppCompatSpinner>
-
-    </android.support.v7.widget.CardView>
-
-
-
-    <TextView
-        android:text="Searching for current stop..."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:id="@+id/stationTextView" />
-
-    <TextView
-        android:text="Finding number of stops..."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/numStopsTextViewXML"
-        android:gravity="center_vertical|center_horizontal"/>
-
-    <TextView
-        android:text="Last Train:"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/curr_train_tv"
-        android:gravity="center_vertical|center_horizontal"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:onClick="transition"
         android:src="@drawable/ic_history" />
 
 
-</LinearLayout>
+</RelativeLayout>

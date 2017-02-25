@@ -1,9 +1,12 @@
 package smarta.smarta;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class TripHistory extends AppCompatActivity {
 
@@ -18,7 +21,9 @@ public class TripHistory extends AppCompatActivity {
         mRecycler = (RecyclerView) findViewById(R.id.recycler_view);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        //adapter = new RVAdapter(MainActivity.this,trips);
-        //mRecycler.setAdapter(adapter);
+        ArrayList<Trip> trips = (ArrayList<Trip>) getIntent().getSerializableExtra("data");
+
+        adapter = new RVAdapter(TripHistory.this,trips);
+        mRecycler.setAdapter(adapter);
     }
 }

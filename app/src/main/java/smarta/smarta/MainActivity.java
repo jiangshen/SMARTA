@@ -2,7 +2,10 @@ package smarta.smarta;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -88,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
-        beaconIdToTrainIdHashMap.put("19272:35107","52A32");
-        beaconIdToTrainIdHashMap.put("19272:35026", "Stop 4"); //stop 4
+        beaconIdToTrainIdHashMap.put("19272:35107","Train B");
+        beaconIdToTrainIdHashMap.put("19272:35026", "Train A"); //stop 4
 
         beaconIdToStationIdHashMap.put("19272:3", "Airport"); //stop 1
         beaconIdToStationIdHashMap.put("19272:21858", "College Park"); //stop 2
@@ -132,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
 
                                     numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
                                     if (numStopsLeft == 0){
-
+                                        Log.d("NOTIFY", "HEY REACHED!!!!!!!!");
+                                        displayNotification("You have reached your destination!");
                                     }
                                     numStopsTextView.setText(String.valueOf(numStopsLeft));
                                 }
@@ -351,6 +355,18 @@ public class MainActivity extends AppCompatActivity {
             case "19272:21858": return "Stop 2";
         }
         return currentStop;
+    }
+
+    private void displayNotification(String s) {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_travel)
+                        .setContentTitle("SMARTA")
+                        .setContentText(s);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        int mId = 0;
+        mNotificationManager.notify(mId, mBuilder.build());
     }
 
     /*

@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     private LinearLayout llmain;
 
+    private ArrayList<Trip> trips;
+
     private Spinner spinner;
 
     private Spinner numStops;
@@ -70,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private List<String> currentLine;
     private String currentStation;
 
-    private RecyclerView mRecyclerView;
-    private RVAdapter adapter;
 
     private String destinationStation;
 
@@ -171,16 +171,13 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         cardBlue = (CardView) findViewById(R.id.card_blue);
         cardRed = (CardView) findViewById(R.id.card_red);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //SET ADAPTER ON BUTTON PRESS
         Trip t = new Trip(12345,"Airport","East Point");
         t.setTripStartTime();
         t.setTripEndTime();
-        ArrayList<Trip> trips = new ArrayList<>();
+        trips = new ArrayList<>();
         trips.add(t);
-        adapter = new RVAdapter(MainActivity.this,trips);
-        mRecyclerView.setAdapter(adapter);
+
 
         spinner = (Spinner) findViewById(R.id.spinning);
         arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,

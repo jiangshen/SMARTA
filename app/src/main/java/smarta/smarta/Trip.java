@@ -16,6 +16,12 @@ public class Trip {
     private String fromSrc;
     private String toDest;
 
+    public Trip(int trainID, String fromSrc, String toDest){
+        this.trainID = trainID;
+        this.fromSrc = fromSrc;
+        this.toDest = toDest;
+    }
+
     public void setTripStartTime() {
         startTime = Calendar.getInstance().getTime();
     }

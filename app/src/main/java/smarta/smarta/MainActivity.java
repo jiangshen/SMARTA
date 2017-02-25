@@ -11,6 +11,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +27,7 @@ import com.estimote.sdk.Region;
 import com.estimote.sdk.SystemRequirementsChecker;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private ArrayList<String> blueLineStops = new ArrayList<>();
     private List<String> currentLine;
     private String currentStation;
+
+    private RecyclerView mRecyclerView;
+    private RVAdapter adapter;
 
     private String destinationStation;
 
@@ -164,6 +170,17 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         cardGold = (CardView) findViewById(R.id.card_gold);
         cardBlue = (CardView) findViewById(R.id.card_blue);
         cardRed = (CardView) findViewById(R.id.card_red);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //SET ADAPTER ON BUTTON PRESS
+        Trip t = new Trip(12345,"Airport","East Point");
+        t.setTripStartTime();
+        t.setTripEndTime();
+        ArrayList<Trip> trips = new ArrayList<>();
+        trips.add(t);
+        adapter = new RVAdapter(MainActivity.this,trips);
+        mRecyclerView.setAdapter(adapter);
 
         spinner = (Spinner) findViewById(R.id.spinning);
         arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,

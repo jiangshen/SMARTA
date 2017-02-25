@@ -7,7 +7,9 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -43,12 +45,17 @@ public class MainActivity extends AppCompatActivity {
     // Red = 0, Gold = 1, Blue = 2
     private int lineNum = 1;
 
+    //keep track of number of stops left until destination
+    private int numStopsLeft;
+
     private BeaconManager beaconManager;
     private Region region;
     private ArrayList<String> redLineStops = new ArrayList<>();
     private ArrayList<String> goldLineStops = new ArrayList<>();
     private ArrayList<String> blueLineStops = new ArrayList<>();
     private List<String> currentLine;
+    private String lastStation;
+    private String destinationStation;
 
     private ArrayAdapter<String> arrAdapter;
 
@@ -91,8 +98,24 @@ public class MainActivity extends AppCompatActivity {
             public void onBeaconsDiscovered(Region region, List<Beacon> list) {
                 if (!list.isEmpty()) {
                     Beacon nearestBeacon = list.get(0);
+                    String currentStation;
+                    if(list.size() > 1){
+                        Beacon station = list.get(1);
+                        String beaconKey = Integer.toString(station.getMajor()) + ":" + Integer.toString(station.getMinor());
+                        if (beaconIdToBusIdHashMap.containsKey(beaconKey)){
+                            currentStation = beaconIdToBusIdHashMap.get(beaconKey);
+                            if(!lastStation.equals(currentStation)){
+                                numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(currentStation));
+                            }
+                            lastStation = currentStation;
+                        }
 
+                        //check if 2nd closest stop changes and then update stops left
+                        //numStopsLeft = Math.abs(currentLine.indexOf(beaconIdToBusIdHashMap.get(nearestBeacon.getProximityUUID()))
+                        //      - currentLine.indexOf(currentStop));
+                    }
                     String currentStop = currentStopFinder(nearestBeacon);
+
 
                     stationTextView.setText(currentStop);
                 }
@@ -110,7 +133,24 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(arrAdapter);
         currentLine = goldLineStops;
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                destinationStation = spinner.getSelectedItem().toString();
+                Log.d("destinationStation",destinationStation);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         numStops = (Spinner) findViewById(R.id.num_stops);
+
+        numStopsLeft = 10;
+        lastStation = null;
+        destinationStation = currentLine.get(0);
 
     }
 

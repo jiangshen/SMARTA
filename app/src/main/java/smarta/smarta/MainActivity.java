@@ -117,14 +117,11 @@ public class MainActivity extends AppCompatActivity {
                             currentStation = beaconIdToBusIdHashMap.get(beaconKey);
                             if(!currentStation.equals(lastStation)){
                                 numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(currentStation)) - numStopsNotify;
+                                Log.d("numStopsLeft", Integer.toString(numStopsLeft));
                             }
                             lastStation = currentStation;
                         }
                     }
-                    String currentStop = currentStopFinder(nearestBeacon);
-
-
-                    stationTextView.setText(currentStop);
                 }
             }
         });

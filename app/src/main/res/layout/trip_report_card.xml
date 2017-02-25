@@ -2,12 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:paddingTop="36dp"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp">
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -37,6 +44,8 @@
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
 
+                    android:id="@+id/tv_train_id"
+
                     android:paddingBottom="12dp"
                     android:text="#ID"
                     android:textSize="24dp"
@@ -49,20 +58,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
-                android:orientation="vertical"
-                android:gravity="center_vertical">
+                android:orientation="horizontal"
+                android:gravity="center">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_house_name"
+                    android:id="@+id/tv_src_dst"
                     android:textStyle="bold"
-                    android:textSize="32dp"
-                    android:text="# House Name"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_house_addr"
-                    android:text="# House Address"/>
+                    android:textSize="24dp"
+                    android:text="#src to #dst"/>
             </LinearLayout>
         </LinearLayout>
 

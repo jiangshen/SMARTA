@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,10 +27,11 @@ import com.estimote.sdk.SystemRequirementsChecker;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private final int animDuration = 500;
     private final int redColor = Color.parseColor("#D32F2F");
@@ -79,10 +81,14 @@ public class MainActivity extends AppCompatActivity {
     private Map<String, String> beaconIdToTrainIdHashMap = new HashMap<>();
     private Map<String, String> beaconIdToStationIdHashMap = new HashMap<>();
 
+    TextToSpeech tts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         llmain = (LinearLayout) findViewById(R.id.activity_main);
         llBlueBar = (LinearLayout) findViewById(R.id.ll_blue_bar);
@@ -151,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /* TTS */
+        tts = new TextToSpeech(getApplicationContext(), this);
+
         cardGold = (CardView) findViewById(R.id.card_gold);
         cardBlue = (CardView) findViewById(R.id.card_blue);
         cardRed = (CardView) findViewById(R.id.card_red);
@@ -206,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_gold_clicked(View view) {
+
         int colorSource = (lineNum == 0) ? redColor : (lineNum == 2) ? blueColor : 0;
         if (lineNum != 1) {
 //            cardGold.setBackgroundColor(Color.parseColor("#455A64"));
@@ -430,5 +440,16 @@ public class MainActivity extends AppCompatActivity {
         blueLineStops.add("Avondale");
         blueLineStops.add("Kensington");
         blueLineStops.add("Indian Creek");
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(Locale.ENGLISH);
+        }
+    }
+
+    public void speak(String s) {
+        tts.speak(s, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 }

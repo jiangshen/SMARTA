@@ -26,4 +26,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+
+    // always check to update to this dependency to the latest versio of Estimote Android SDK by
+    // going on https://github.com/Estimote/Android-SDK/releases
+    compile 'com.estimote:sdk:0.10.8@aar'
 }

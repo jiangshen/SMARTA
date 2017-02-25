@@ -193,9 +193,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         numStopsLeft = 10;
-        //initialize numStopsNotify???
         numStopsNotify = 0;
-        currentStation = null;
+        currentStation = "Airport";
         destinationStation = currentLine.get(0);
 
     }

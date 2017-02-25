@@ -16,39 +16,39 @@ public class Trip {
     private String fromSrc;
     private String toDest;
 
-    private void setTripStartTime() {
+    public void setTripStartTime() {
         startTime = Calendar.getInstance().getTime();
     }
 
-    private void setTripEndTime() {
+    public void setTripEndTime() {
         endTime = Calendar.getInstance().getTime();
     }
 
-    private void setTrainID(int id) {
+    public void setTrainID(int id) {
         trainID = id;
     }
 
-    private void setFromSrc(String fname) {
+    public void setFromSrc(String fname) {
         fromSrc = fname;
     }
 
-    private void setToDest(String tname) {
+    public void setToDest(String tname) {
         toDest = tname;
     }
 
-    private Date getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    private Date getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    private Long getDuration() {
+    public Long getDuration() {
         return endTime.getTime() - startTime.getTime();
     }
 
-    private int getTrainID() {
+    public int getTrainID() {
         return trainID;
     }
 

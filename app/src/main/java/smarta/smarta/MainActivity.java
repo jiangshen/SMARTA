@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private LinearLayout llRedBar;
     private LinearLayout llGoldBar;
 
-    private LinearLayout llmain;
+    private RelativeLayout llmain;
 
     private ArrayList<Trip> trips;
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        llmain = (LinearLayout) findViewById(R.id.activity_main);
+        llmain = (RelativeLayout) findViewById(R.id.activity_main);
         llBlueBar = (LinearLayout) findViewById(R.id.ll_blue_bar);
         llRedBar = (LinearLayout) findViewById(R.id.ll_red_bar);
         llGoldBar = (LinearLayout) findViewById(R.id.ll_gold_bar);

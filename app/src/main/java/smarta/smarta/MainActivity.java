@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spinner;
 
+    private Spinner numStops;
+
     // Red = 0, Gold = 1, Blue = 2
     private int lineNum = 1;
 
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView stationTextView;
 
-        private HashMap<String, String> beaconIdToBusIdHashMap = new HashMap<>();
+    private HashMap<String, String> beaconIdToBusIdHashMap = new HashMap<>();
     private static Map<String, String> STOPS_BY_BEACONS = null;
 
     static {
@@ -104,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(arrAdapter);
         currentLine = goldLineStops;
 
+        numStops = (Spinner) findViewById(R.id.num_stops);
+
     }
 
     public void card_gold_clicked(View view) {
@@ -138,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_blue_clicked(View view) {
+        int colorSource = (lineNum == 0) ? Color.parseColor("#D32F2F") : (lineNum == 1) ? Color
+                .parseColor("#FFC107") : 0;
         if (lineNum != 2) {
 //            cardBlue.setBackgroundColor(Color.parseColor("#455A64"));
 //            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
@@ -146,9 +152,23 @@ public class MainActivity extends AppCompatActivity {
                     blueLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(arrAdapter);
-            llmain.setBackgroundColor(Color.parseColor("#0277BD"));
+//            llmain.setBackgroundColor(Color.parseColor("#0277BD"));
             lineNum = 2;
             currentLine = blueLineStops;
+
+            int colorFrom = colorSource;
+            int colorTo = Color.parseColor("#0277BD");
+            ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+            colorAnimation.setDuration(250); // milliseconds
+            colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+                @Override
+                public void onAnimationUpdate(ValueAnimator animator) {
+                    llmain.setBackgroundColor((int) animator.getAnimatedValue());
+                }
+
+            });
+            colorAnimation.start();
         }
     }
 

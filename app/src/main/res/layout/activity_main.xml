@@ -120,6 +120,18 @@
 
     </android.support.v7.widget.AppCompatSpinner>
 
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:id="@+id/num_stops"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:dropDownSelector="#fff">
+
+    </android.support.v7.widget.AppCompatSpinner>
+
     <TextView
         android:text="Searching for current stop..."
         android:layout_width="wrap_content"

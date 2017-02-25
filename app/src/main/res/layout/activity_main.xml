@@ -34,13 +34,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:backgroundTint="#ffffff">
+            android:backgroundTint="#ffffff"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/card_red"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#D32F2F"
@@ -52,16 +58,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:backgroundTint="#455A64">
+            android:backgroundTint="#455A64"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/card_gold">
 
             <TextView
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
+                android:textColor="#FFD600"
                 android:text="Gold"/>
 
         </android.support.v7.widget.CardView>
@@ -70,13 +82,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:backgroundTint="#ffffff">
+            android:backgroundTint="#ffffff"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/card_blue">
 
             <TextView
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#dd1976D2"

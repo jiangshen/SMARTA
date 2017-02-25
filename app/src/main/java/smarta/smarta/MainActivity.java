@@ -30,6 +30,9 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
 
     private final int animDuration = 500;
+    private final int redColor = Color.parseColor("#D32F2F");
+    private final int blueColor = Color.parseColor("#1484ca");
+    private final int goldColor = Color.parseColor("#efc12c");
 
     private CardView cardGold;
     private CardView cardBlue;
@@ -180,13 +183,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_gold_clicked(View view) {
-        int colorSource = (lineNum == 0) ? Color.parseColor("#D32F2F") : (lineNum == 2) ? Color
-                .parseColor("#0277BD") : 0;
+        int colorSource = (lineNum == 0) ? redColor : (lineNum == 2) ? blueColor : 0;
         if (lineNum != 1) {
 //            cardGold.setBackgroundColor(Color.parseColor("#455A64"));
 //            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
 //            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
 //            llmain.setBackgroundColor(Color.parseColor("#FFC107"));
+
+            llGoldBar.setVisibility(View.VISIBLE);
+            if (lineNum == 0){
+                llRedBar.setVisibility(View.INVISIBLE);
+            } else {
+                llBlueBar.setVisibility(View.INVISIBLE);
+            }
+
             arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                     goldLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -195,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             currentLine = goldLineStops;
 
             int colorFrom = colorSource;
-            int colorTo = Color.parseColor("#FFC107");
+            int colorTo = goldColor;
             ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
             colorAnimation.setDuration(animDuration); // milliseconds
             colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -211,22 +221,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_blue_clicked(View view) {
-        int colorSource = (lineNum == 0) ? Color.parseColor("#D32F2F") : (lineNum == 1) ? Color
-                .parseColor("#FFC107") : 0;
+        int colorSource = (lineNum == 0) ? redColor : (lineNum == 1) ? goldColor : 0;
         if (lineNum != 2) {
 //            cardBlue.setBackgroundColor(Color.parseColor("#455A64"));
 //            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
 //            cardRed.setBackgroundColor(Color.parseColor("#ffffff"));
+
+            llBlueBar.setVisibility(View.VISIBLE);
+            if (lineNum == 0){
+                llRedBar.setVisibility(View.INVISIBLE);
+            } else {
+                llGoldBar.setVisibility(View.INVISIBLE);
+            }
+
+            /**
+             *
+             */
             arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                     blueLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(arrAdapter);
-//            llmain.setBackgroundColor(Color.parseColor("#0277BD"));
             lineNum = 2;
             currentLine = blueLineStops;
 
+            /**
+             * Background color and transitions
+             */
             int colorFrom = colorSource;
-            int colorTo = Color.parseColor("#0277BD");
+            int colorTo = blueColor;
             ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
             colorAnimation.setDuration(animDuration); // milliseconds
             colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -242,12 +264,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void card_red_clicked(View view) {
-        int colorSource = (lineNum == 2) ? Color.parseColor("#0277BD") : (lineNum == 1) ? Color
-                .parseColor("#FFC107") : 0;
+        int colorSource = (lineNum == 2) ? blueColor : (lineNum == 1) ? goldColor : 0;
         if (lineNum != 0) {
 //            cardRed.setBackgroundColor(Color.parseColor("#455A64"));
 //            cardGold.setBackgroundColor(Color.parseColor("#ffffff"));
 //            cardBlue.setBackgroundColor(Color.parseColor("#ffffff"));
+
+            llRedBar.setVisibility(View.VISIBLE);
+            if (lineNum == 1){
+                llGoldBar.setVisibility(View.INVISIBLE);
+            } else {
+                llBlueBar.setVisibility(View.INVISIBLE);
+            }
+
             arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                     redLineStops);
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -257,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
             currentLine = redLineStops;
 
             int colorFrom = colorSource;
-            int colorTo = Color.parseColor("#D32F2F");
+            int colorTo = redColor;
             ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
             colorAnimation.setDuration(animDuration); // milliseconds
             colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -364,5 +393,4 @@ public class MainActivity extends AppCompatActivity {
         blueLineStops.add("Kensington");
         blueLineStops.add("Indian Creek");
     }
-
 }

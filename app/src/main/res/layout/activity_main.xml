@@ -75,7 +75,8 @@
                     android:layout_height="8dp"
                     android:background="#8D6E63"
                     android:id="@+id/ll_red_bar"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="invisible">
                 </LinearLayout>
 
             </LinearLayout>
@@ -158,7 +159,8 @@
                     android:layout_height="8dp"
                     android:background="#8D6E63"
                     android:id="@+id/ll_blue_bar"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="invisible">
                 </LinearLayout>
 
             </LinearLayout>

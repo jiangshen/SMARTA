@@ -13,6 +13,8 @@ public class Trip {
     private Date startTime;
     private Date endTime;
     private int trainID;
+    private String fromSrc;
+    private String toDest;
 
     private void setTripStartTime() {
         startTime = Calendar.getInstance().getTime();
@@ -24,6 +26,14 @@ public class Trip {
 
     private void setTrainID(int id) {
         trainID = id;
+    }
+
+    private void setFromSrc(String fname) {
+        fromSrc = fname;
+    }
+
+    private void setToDest(String tname) {
+        toDest = tname;
     }
 
     private Date getStartTime() {
@@ -40,5 +50,13 @@ public class Trip {
 
     private int getTrainID() {
         return trainID;
+    }
+
+    public String getFromSrc() {
+        return fromSrc;
+    }
+
+    public String getToDest() {
+        return toDest;
     }
 }

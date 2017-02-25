@@ -43,25 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
-        redLineStops.add("Airport");
-        redLineStops.add("College Park");
-        redLineStops.add("East Point");
-        redLineStops.add("LakeWood/Ft.McPherson");
-        redLineStops.add("Oakland City");
-        redLineStops.add("West End");
-        redLineStops.add("Garnett");
-        redLineStops.add("Five Points");
-        redLineStops.add("Peachtree Center");
-        redLineStops.add("Civic Center");
-        redLineStops.add("North Avenue");
-        redLineStops.add("Midtown");
-        redLineStops.add("Arts Center");
-        redLineStops.add("Buckhead");
-        redLineStops.add("Medical Center");
-        redLineStops.add("Dunwoody");
-        redLineStops.add("Sandy Springs");
-        redLineStops.add("North Springs");
-
+        //Adding stop strings to appropriate lists
+        populateStops();
 
         stationTextView = (TextView) findViewById(R.id.stationTextView);
 
@@ -115,5 +98,65 @@ public class MainActivity extends AppCompatActivity {
             case "19272:21858": return "Stop 2";
         }
         return currentStop;
+    }
+
+    /*
+    * Red and Gold Line stops are ordered chronologically from South to North.
+    * BLue Line stops are ordered West to East.
+    * */
+    private void populateStops(){
+        redLineStops.add("Airport");
+        redLineStops.add("College Park");
+        redLineStops.add("East Point");
+        redLineStops.add("LakeWood/Ft.McPherson");
+        redLineStops.add("Oakland City");
+        redLineStops.add("West End");
+        redLineStops.add("Garnett");
+        redLineStops.add("Five Points");
+        redLineStops.add("Peachtree Center");
+        redLineStops.add("Civic Center");
+        redLineStops.add("North Avenue");
+        redLineStops.add("Midtown");
+        redLineStops.add("Arts Center");
+        redLineStops.add("Lindbergh Center");
+        redLineStops.add("Buckhead");
+        redLineStops.add("Medical Center");
+        redLineStops.add("Dunwoody");
+        redLineStops.add("Sandy Springs");
+        redLineStops.add("North Springs");
+
+        goldLineStops.add("Airport");
+        goldLineStops.add("College Park");
+        goldLineStops.add("East Point");
+        goldLineStops.add("LakeWood/Ft.McPherson");
+        goldLineStops.add("Oakland City");
+        goldLineStops.add("West End");
+        goldLineStops.add("Garnett");
+        goldLineStops.add("Five Points");
+        goldLineStops.add("Peachtree Center");
+        goldLineStops.add("Civic Center");
+        goldLineStops.add("North Avenue");
+        goldLineStops.add("Midtown");
+        goldLineStops.add("Arts Center");
+        goldLineStops.add("Lindbergh Center");
+        goldLineStops.add("Lenox");
+        goldLineStops.add("Brookhaven/Oglethorpe");
+        goldLineStops.add("Chamblee");
+        goldLineStops.add("Doraville");
+
+        blueLineStops.add("H.E. Holmes");
+        blueLineStops.add("West Lake");
+        blueLineStops.add("Ashby");
+        blueLineStops.add("Vine City");
+        blueLineStops.add("DOME/GWCC");
+        blueLineStops.add("Georgia State");
+        blueLineStops.add("King Memorial");
+        blueLineStops.add("Inman Park");
+        blueLineStops.add("Edgewood");
+        blueLineStops.add("East Lake");
+        blueLineStops.add("Decatur");
+        blueLineStops.add("Avondale");
+        blueLineStops.add("Kensington");
+        blueLineStops.add("Indian Creek");
     }
 }

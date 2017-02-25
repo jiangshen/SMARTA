@@ -29,6 +29,8 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final int animDuration = 500;
+
     private CardView cardGold;
     private CardView cardBlue;
     private CardView cardRed;
@@ -172,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             int colorFrom = colorSource;
             int colorTo = Color.parseColor("#FFC107");
             ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-            colorAnimation.setDuration(250); // milliseconds
+            colorAnimation.setDuration(animDuration); // milliseconds
             colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
                 @Override
@@ -203,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             int colorFrom = colorSource;
             int colorTo = Color.parseColor("#0277BD");
             ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-            colorAnimation.setDuration(250); // milliseconds
+            colorAnimation.setDuration(animDuration); // milliseconds
             colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
                 @Override
@@ -234,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             int colorFrom = colorSource;
             int colorTo = Color.parseColor("#D32F2F");
             ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-            colorAnimation.setDuration(250); // milliseconds
+            colorAnimation.setDuration(animDuration); // milliseconds
             colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
                 @Override

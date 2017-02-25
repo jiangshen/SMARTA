@@ -2,7 +2,6 @@ package smarta.smarta;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,26 +60,19 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> goldLineStops = new ArrayList<>();
     private ArrayList<String> blueLineStops = new ArrayList<>();
     private List<String> currentLine;
-    private String lastStation;
+    private String currentStation;
+
     private String destinationStation;
 
     private ArrayAdapter<String> arrAdapter;
     private ArrayAdapter<String> arrayAdapter;
 
     TextView stationTextView;
+    TextView currentStationTextView;
+    TextView numStopsTextView;
 
-    private HashMap<String, String> beaconIdToBusIdHashMap = new HashMap<>();
-    private static Map<String, String> STOPS_BY_BEACONS = null;
-
-    static {
-        Map<String, String> beaconIdToCurrentStopHashMap = new HashMap<>();
-        beaconIdToCurrentStopHashMap.put("19272:3", "Airport"); //stop 1
-        beaconIdToCurrentStopHashMap.put("19272:21858", "College Park"); //stop 2
-        beaconIdToCurrentStopHashMap.put("19272:61798", "East Point"); //stop 3
-        //beaconIdToCurrentStopHashMap.put("19272:35026", "Stop 4"); //stop 4
-
-        STOPS_BY_BEACONS = Collections.unmodifiableMap(beaconIdToCurrentStopHashMap);
-    }
+    private Map<String, String> beaconIdToTrainIdHashMap = new HashMap<>();
+    private Map<String, String> beaconIdToStationIdHashMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +86,19 @@ public class MainActivity extends AppCompatActivity {
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
-        beaconIdToBusIdHashMap.put("19272:35107","52A32");
+        beaconIdToTrainIdHashMap.put("19272:35107","52A32");
+        beaconIdToTrainIdHashMap.put("19272:35026", "Stop 4"); //stop 4
+
+        beaconIdToStationIdHashMap.put("19272:3", "Airport"); //stop 1
+        beaconIdToStationIdHashMap.put("19272:21858", "College Park"); //stop 2
+        beaconIdToStationIdHashMap.put("19272:61798", "East Point"); //stop 3
+
         //Adding stop strings to appropriate lists
         populateStops();
 
         stationTextView = (TextView) findViewById(R.id.stationTextView);
+        currentStationTextView = (TextView) findViewById(R.id.curr_stn);
+        numStopsTextView = (TextView) findViewById(R.id.numStopsTextViewXML);
 
         beaconManager = new BeaconManager(this);
         region = new Region("ranged region",
@@ -109,17 +109,26 @@ public class MainActivity extends AppCompatActivity {
             public void onBeaconsDiscovered(Region region, List<Beacon> list) {
                 if (!list.isEmpty()) {
                     Beacon nearestBeacon = list.get(0);
-                    String currentStation;
+
                     if(list.size() > 1){
-                        Beacon station = list.get(1);
-                        String beaconKey = Integer.toString(station.getMajor()) + ":" + Integer.toString(station.getMinor());
-                        if (beaconIdToBusIdHashMap.containsKey(beaconKey)){
-                            currentStation = beaconIdToBusIdHashMap.get(beaconKey);
-                            if(!currentStation.equals(lastStation)){
-                                numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(currentStation)) - numStopsNotify;
-                                Log.d("numStopsLeft", Integer.toString(numStopsLeft));
+                        Beacon currentStationBeacon = list.get(1);
+                        String currentStationBeaconKey = Integer.toString(currentStationBeacon.getMajor()) + ":" + Integer.toString(currentStationBeacon.getMinor());
+                        if (beaconIdToStationIdHashMap.containsKey(currentStationBeaconKey)) {
+
+                            String newStation = beaconIdToStationIdHashMap.get(currentStationBeaconKey);
+
+                            if (currentStation != null) {
+                                if (!newStation.equals(currentStation)){
+                                    numStopsLeft = Math.abs(currentLine.indexOf(destinationStation) - currentLine.indexOf(newStation)) - numStopsNotify;
+
+                                    numStopsTextView.setText(String.valueOf(numStopsLeft));
+                                    Log.d("numStopsLeft", Integer.toString(numStopsLeft));
+                                }
                             }
-                            lastStation = currentStation;
+
+                            currentStation = newStation;
+
+                            currentStationTextView.setText(currentStation);
                         }
                     }
                 }
@@ -174,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         numStopsLeft = 10;
         //initialize numStopsNotify???
         numStopsNotify = 0;
-        lastStation = null;
+        currentStation = null;
         destinationStation = currentLine.get(0);
 
     }

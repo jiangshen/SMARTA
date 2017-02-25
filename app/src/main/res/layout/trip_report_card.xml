@@ -12,62 +12,175 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#03A9F4"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#03A9F4"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:paddingTop="12dp"
+                        android:text="Train"
+                        android:textSize="24dp"
+                        android:textColor="#fff"
+                        android:textStyle="bold"/>
 
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+
+                        android:id="@+id/tv_train_id"
+
+                        android:paddingBottom="12dp"
+                        android:text="#ID"
+                        android:textSize="24dp"
+                        android:textColor="#fff"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_src_dst"
+                        android:textStyle="bold"
+                        android:textSize="24dp"
+                        android:text="#src to #dst"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="4dp"
+                android:background="#9C27B0">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
-                    android:paddingTop="12dp"
-                    android:text="Train"
-                    android:textSize="24dp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"/>
+                    android:paddingEnd="48dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Depart"
+                        android:textColor="#9C27B0"
+                        android:textSize="24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#timeD"
+                        android:id="@+id/tv_depart"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginBottom="12dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#B0BEC5">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
+                    android:orientation="vertical">
 
-                    android:id="@+id/tv_train_id"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Arrive"
+                        android:textColor="#9C27B0"
+                        android:textSize="24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#timeA"
+                        android:id="@+id/tv_arrive"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginBottom="12dp"/>
 
-                    android:paddingBottom="12dp"
-                    android:text="#ID"
-                    android:textSize="24dp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"/>
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_src_dst"
-                    android:textStyle="bold"
-                    android:textSize="24dp"
-                    android:text="#src to #dst"/>
+                android:layout_height="wrap_content"
+                android:minHeight="2dp"
+                android:background="#607D8B">
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="24dp"
+                android:text="Duration"
+                android:textColor="#607D8B"
+                android:textSize="24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#duration"
+                android:id="@+id/tv_duration"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="18dp"
+                android:layout_marginEnd="16dp"/>
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

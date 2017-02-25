@@ -2,11 +2,13 @@ package smarta.smarta;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,10 +35,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CustomViewHolder> 
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Trip aTrip = tripsList.get(position);
 
+        DateFormat df = new android.text.format.DateFormat();
+        df.format("hh:mm:ss a", new Date());
+
         holder.tvTrainID.setText(String.valueOf(aTrip.getTrainID()));
         holder.tvSrcToDst.setText(aTrip.getFromSrc() + " to " + aTrip.getToDest());
-        holder.tvTimeDepart.setText(aTrip.getStartTime().toString());
-        holder.tvTimeArrive.setText(aTrip.getEndTime().toString());
+        holder.tvTimeDepart.setText(df.format("hh:mm:ss a", aTrip.getStartTime()));
+        holder.tvTimeArrive.setText(df.format("hh:mm:ss a", aTrip.getEndTime()));
         holder.tvDuration.setText(String.valueOf(aTrip.getDuration() / 1000) + " s");
     }
 

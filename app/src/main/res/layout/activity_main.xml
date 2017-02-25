@@ -18,11 +18,22 @@
         android:gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:textSize="36sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:text="Select Route"
-        android:id="@+id/textView2"/>
+        android:text="Current Station"
+        android:id="@+id/tv_currStop"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:text="Select Line"
+        android:id="@+id/tv_selectRoute"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,29 +119,66 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <TextView
         android:layout_width="match_parent"
-        android:id="@+id/spinning"
+        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:dropDownSelector="#fff">
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:text="Choose Destination"
+        android:id="@+id/tv_selStation"/>
 
-    </android.support.v7.widget.AppCompatSpinner>
-
-    <android.support.v7.widget.AppCompatSpinner
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:id="@+id/num_stops"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_height="36dp"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:dropDownSelector="#fff">
+        android:layout_marginEnd="60dp">
 
-    </android.support.v7.widget.AppCompatSpinner>
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:id="@+id/spinning"
+            android:layout_marginEnd="-4dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:dropDownSelector="#fff">
+
+        </android.support.v7.widget.AppCompatSpinner>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:text="Notify me in"
+        android:id="@+id/tv_notify"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:id="@+id/num_stops"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-4dp"
+            android:dropDownSelector="#fff"
+            android:layout_gravity="center">
+
+        </android.support.v7.widget.AppCompatSpinner>
+
+    </android.support.v7.widget.CardView>
+
+
 
     <TextView
         android:text="Searching for current stop..."
